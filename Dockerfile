@@ -8,6 +8,8 @@ RUN curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/linux
 
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+RUN chmod +x /entrypoint.sh && \
+    mkdir -p /var/log/supervisor && \
+    mkdir -p /etc/supervisor.d
 
 ENTRYPOINT ["/entrypoint.sh"]
